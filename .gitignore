@@ -1,0 +1,17 @@
+# Node.js and General
+/Backend/node_modules/
+/my-project/node_modules/
+
+
+/Backend/.env/
+/my-project/.env/
+
+/Backend/npm-debug.log
+/Backend/yarn-error.log
+/Backend/package-lock.json
+/Backend/yarn.lock
+/Backend/*.log
+
+
+/my-project/.next/
+/my-project/package-lock.json
