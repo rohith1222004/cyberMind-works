@@ -20,7 +20,18 @@ To get started with this project, follow the steps below:
 Make sure you have the following installed:
 
 - Node.js 
-- MongoDB 
+- MongoDB
+
+### Run
+Frontend 
+```
+npm run dev
+```
+
+Backend
+```
+node index.js
+```
 
 
 
