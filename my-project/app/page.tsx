@@ -31,7 +31,6 @@ export default function Home() {
       <div className="mt-5">
         <FilterCard jobs={getAllJobs}/>
       </div>
-
     </div>
   );
 }
