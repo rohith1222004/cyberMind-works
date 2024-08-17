@@ -8,11 +8,11 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import { FaAnglesDown } from "react-icons/fa6";
 
 const JobForm = () => {
-  
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   const { register, handleSubmit, reset } = useForm();
   const onSubmit  = async (data) => {
     console.log(data)
-    const response = await axios.post('http://localhost:3000/postFrom', data, {
+    const response = await axios.post(`${baseUrl}/postFrom`, data, {
       headers: {
         "Content-Type": "application/json",
       }

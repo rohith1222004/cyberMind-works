@@ -6,9 +6,11 @@ import axios from "axios";
 
 export default function Home() {
   const [getAllJobs, setGetAllJobs] = useState([]);
-
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  console.log(baseUrl);
+  
   useEffect(() => {
-    axios.get('http://localhost:3000/postFrom', {
+    axios.get(`${baseUrl}/postFrom`, {
       headers: {
         'Content-Type': 'application/json'
       }

@@ -81,6 +81,7 @@ export default function FilterCard({ jobs }) {
             <option value="" disabled hidden>Choose Preferred Location</option>
             <option value="Coimbatore">Coimbatore</option>
             <option value="Chennai">Chennai</option>
+            <option value="Trichy">Trichy</option>
             <option value="Madurai">Madurai</option>
           </select>
 
