@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import JobCard from './JobCard';
@@ -9,8 +9,7 @@ export default function FilterCard({ jobs }) {
   const [location, setLocation] = useState('');
   const [jobType, setJobType] = useState('');
   const [salaryRange, setSalaryRange] = useState([1, 80]);
-
- 
+  const [searchQuery, setSearchQuery] = useState('')
   const filterJobs = () => {
     let filtered = jobs;
 
@@ -18,6 +17,12 @@ export default function FilterCard({ jobs }) {
       filtered = filtered.filter(job => job.location === location);
     }
 
+    if (searchQuery) {
+      filtered = filtered.filter(job =>
+        (job.jobTitle && job.jobTitle.toLowerCase().includes(searchQuery.toLowerCase())) || 
+        (job.role && job.role.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    }
     if (jobType) {
       filtered = filtered.filter(job => job.jobType === jobType);
     }
@@ -32,7 +37,7 @@ export default function FilterCard({ jobs }) {
 
   useEffect(() => {
     filterJobs();
-  }, [location, jobType, salaryRange]);
+  }, [searchQuery,location, jobType, salaryRange]);
 
   const handleLocationChange = (e) => {
     setLocation(e.target.value);
@@ -44,32 +49,41 @@ export default function FilterCard({ jobs }) {
 
   const handleSalaryChange = (value) => {
     setSalaryRange(value);
-    console.log(salaryRange);
-    
   };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
 
   return (
     <div>
       <div className='w-full h-32 flex justify-evenly shadow-md items-center'>
-        <div className='flex items-center space-x-5'>
-          <div>
-            <Image src={'/search.png'} width={20} height={20} />
+      <div className='flex items-center space-x-5'>
+            <div>
+              <Image src={'/search.png'} width={20} height={20} />
+            </div>
+            <input
+              type="text"
+              placeholder="Search By Job Title, Role"
+              className="text-gray-500 bg-transparent border-none focus:outline-none"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
           </div>
-          <h2 className='text-gray-500'>Search By Job Title, Role</h2>
-        </div>
-
         <div className='w-px h-12 bg-gray-300'></div>
 
         <div className='flex items-center space-x-5'>
           <div>
             <Image src={'/Location.png'} width={16} height={16} />
           </div>
-          <select className='appearance-none' onChange={handleLocationChange}>
-            <option value="" disabled defaultValue hidden>Choose Preferred Location</option>
+          <select className='appearance-none' value={location} onChange={handleLocationChange}>
+            <option value="" disabled hidden>Choose Preferred Location</option>
             <option value="Coimbatore">Coimbatore</option>
             <option value="Chennai">Chennai</option>
             <option value="Madurai">Madurai</option>
           </select>
+
           <div>
             <Image className='ml-8' src={'/down.png'} width={20} height={20} />
           </div>
@@ -81,10 +95,10 @@ export default function FilterCard({ jobs }) {
           <div>
             <Image src={'/jobType.png'} width={20} height={20} />
           </div>
-          <select className='appearance-none' onChange={handleTypeChange}>
-            <option value="" disabled defaultValue hidden>Job Type</option>
-            <option value="Full-time">Full-time</option>
+          <select className='appearance-none' value={jobType} onChange={handleTypeChange}>
+            <option value="" disabled hidden>Job Type</option>
             <option value="Part-time">Part-time</option>
+            <option value="Full-time">Full-time</option>
             <option value="Contract">Contract</option>
             <option value="Internship">Internship</option>
           </select>
@@ -114,20 +128,16 @@ export default function FilterCard({ jobs }) {
           </div>
         </div>
       </div>
+
       <div className="flex flex-wrap gap-8 mt-5 justify-center">
         {filteredJobs.length > 0 ? (
           filteredJobs.map((job) => (
             <JobCard key={job.id} job={job}/>
           ))
         ) : (
-          <div className="flex flex-wrap gap-8 mt-5 justify-center">
-          {jobs.map((job) => (
-            <JobCard job={job} />
-          ))}
-        </div>
+          <p>No jobs found matching the criteria.</p>
         )}
       </div>
-
     </div>
   );
 }
