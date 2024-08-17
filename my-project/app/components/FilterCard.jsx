@@ -77,35 +77,25 @@ export default function FilterCard({ jobs }) {
           <div>
             <Image src={'/Location.png'} width={16} height={16} />
           </div>
-          <select className='appearance-none' value={location} onChange={handleLocationChange}>
+          <select className='pr-16' value={location} onChange={handleLocationChange}>
             <option value="" disabled hidden>Choose Preferred Location</option>
             <option value="Coimbatore">Coimbatore</option>
             <option value="Chennai">Chennai</option>
             <option value="Trichy">Trichy</option>
             <option value="Madurai">Madurai</option>
           </select>
-
-          <div>
-            <Image className='ml-8' src={'/down.png'} width={20} height={20} />
-          </div>
         </div>
         
         <div className='w-px h-12 bg-gray-300'></div>
 
         <div className='flex items-center space-x-5'>
-          <div>
-            <Image src={'/jobType.png'} width={20} height={20} />
-          </div>
-          <select className='appearance-none' value={jobType} onChange={handleTypeChange}>
+          <select className='pr-16' value={jobType} onChange={handleTypeChange}>
             <option value="" disabled hidden>Job Type</option>
             <option value="Part-time">Part-time</option>
             <option value="Full-time">Full-time</option>
             <option value="Contract">Contract</option>
             <option value="Internship">Internship</option>
           </select>
-          <div>
-            <Image className='ml-8' src={'/down.png'} width={20} height={20} />
-          </div>
         </div>
         
         <div className="w-px h-12 bg-gray-300"></div>
