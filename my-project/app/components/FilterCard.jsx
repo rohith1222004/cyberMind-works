@@ -9,7 +9,8 @@ export default function FilterCard({ jobs }) {
   const [location, setLocation] = useState('');
   const [jobType, setJobType] = useState('');
   const [salaryRange, setSalaryRange] = useState([1, 80]);
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('');
+
   const filterJobs = () => {
     let filtered = jobs;
 
@@ -23,6 +24,7 @@ export default function FilterCard({ jobs }) {
         (job.role && job.role.toLowerCase().includes(searchQuery.toLowerCase()))
       );
     }
+
     if (jobType) {
       filtered = filtered.filter(job => job.jobType === jobType);
     }
@@ -37,7 +39,7 @@ export default function FilterCard({ jobs }) {
 
   useEffect(() => {
     filterJobs();
-  }, [searchQuery,location, jobType, salaryRange]);
+  }, [jobs, searchQuery, location, jobType, salaryRange]);
 
   const handleLocationChange = (e) => {
     setLocation(e.target.value);
@@ -55,22 +57,21 @@ export default function FilterCard({ jobs }) {
     setSearchQuery(e.target.value);
   };
 
-
   return (
     <div>
       <div className='w-full h-32 flex justify-evenly shadow-md items-center'>
-      <div className='flex items-center space-x-5'>
-            <div>
-              <Image src={'/search.png'} width={20} height={20} />
-            </div>
-            <input
-              type="text"
-              placeholder="Search By Job Title, Role"
-              className="text-gray-500 bg-transparent border-none focus:outline-none"
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
+        <div className='flex items-center space-x-5'>
+          <div>
+            <Image src={'/search.png'} width={20} height={20} />
           </div>
+          <input
+            type="text"
+            placeholder="Search By Job Title, Role"
+            className="text-gray-500 bg-transparent border-none focus:outline-none"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </div>
         <div className='w-px h-12 bg-gray-300'></div>
 
         <div className='flex items-center space-x-5'>
@@ -100,13 +101,13 @@ export default function FilterCard({ jobs }) {
         
         <div className="w-px h-12 bg-gray-300"></div>
 
-        <div className=''>
+        <div>
           <div className='flex gap-20'>
             <h2>Salary Per Month</h2>
             <h2>₹{salaryRange[0]}k - ₹{salaryRange[1]}k</h2>
           </div>
 
-          <div className=''>
+          <div>
             <RangeSlider 
               color='black' 
               minRange={1} 
@@ -123,7 +124,7 @@ export default function FilterCard({ jobs }) {
       <div className="flex flex-wrap gap-8 mt-5 justify-center">
         {filteredJobs.length > 0 ? (
           filteredJobs.map((job) => (
-            <JobCard key={job.id} job={job}/>
+            <JobCard key={job.id} job={job} />
           ))
         ) : (
           <p className='mt-10 text-gray-500 font-semibold'>No jobs found matching your criteria. Please select at least one filtering option.</p>
