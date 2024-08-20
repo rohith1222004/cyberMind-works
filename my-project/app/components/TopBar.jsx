@@ -1,24 +1,45 @@
-"use client"
-import Image from 'next/image'
-import React from 'react'
+"use client";
+import Image from 'next/image';
+import React from 'react';
 import { useRouter } from 'next/navigation';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Button } from '@mantine/core';
+import JobForm from './Form';
+
 function TopBar() {
-  const router = useRouter()
+  const router = useRouter();
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
-    <div className='justify-center flex'>
-      <div className='w-3/5 h-20 flex items-center justify-evenly rounded-full border-2'>
-        <div>
-          <Image src={'/logo.png'} width={50} height={50}/>
+    <>
+      <div className='justify-center flex p-4'>
+        <div className='w-full md:w-3/5 h-20 flex items-center justify-between rounded-full border-2 px-4'>
+          <div className='flex items-center'>
+            <Image src={'/logo.png'} width={40} height={40} alt="Logo" />
+          </div>
+          <div className='hidden xl:flex items-center space-x-8'>
+            <h2 className="text-sm md:text-base">Home</h2>
+            <h2 className="text-sm md:text-base">Find Jobs</h2>
+            <h2 className="text-sm md:text-base">Find Talents</h2>
+            <h2 className="text-sm md:text-base">About us</h2>
+            <h2 className="text-sm md:text-base">Testimonials</h2>
+          </div>
+          <button 
+            className='w-32 bg-gradient-to-b from-purple-500 to-purple-800 h-10 rounded-full text-white' 
+            onClick={open}
+          >
+            Create Jobs
+          </button>
         </div>
-        <h2>Home</h2>
-        <h2>Find Jobs</h2>
-        <h2>Find Talents</h2>
-        <h2>About us</h2>
-        <h2>Testimonials</h2>
-        <button className='w-32  bg-gradient-to-b from-purple-500 to-purple-800 bg-purple-700 h-10 rounded-full text-white' onClick={() =>router.push('/form')}>Create Jobs</button>
       </div>
-    </div>
-  )
+
+      <Modal opened={opened} onClose={close} size="auto">
+        <JobForm close={close} />
+      </Modal>
+    </>
+  );
 }
 
-export default TopBar
+export default TopBar;
+
+

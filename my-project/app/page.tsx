@@ -6,6 +6,8 @@ import axios from "axios";
 
 export default function Home() {
   const [getAllJobs, setGetAllJobs] = useState([]);
+
+  
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   console.log(baseUrl);
   
@@ -23,7 +25,7 @@ export default function Home() {
       console.error("There was an error fetching the jobs!", error);
     });
   }, []);
-
+  console.log(getAllJobs);
   return (
     <div>
       <div className="pt-3">
