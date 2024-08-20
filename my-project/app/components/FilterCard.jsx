@@ -124,7 +124,7 @@ export default function FilterCard({ jobs }) {
             <JobCard key={job.id} job={job} />
           ))
         ) : (
-          <p className='mt-10 text-gray-500 font-semibold'>No jobs found matching your criteria. Please select at least one filtering option.</p>
+          <p className='mt-10 text-gray-500 font-semibold text-center'>No jobs found matching your criteria. Please select at least one filtering option.</p>
         )}
       </div>
     </div>
