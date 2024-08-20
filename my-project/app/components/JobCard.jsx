@@ -31,7 +31,7 @@ function JobCard({ job }) {
   }
 
   return (  
-    <div className='bg-white  w-1/2 max-w-sm lg:w-1/3 xl:w-1/4 h-auto flex flex-col rounded-xl shadow-md'>
+    <div className='bg-white w-80 max-w-sm lg:w-1/3 xl:w-1/4 h-auto flex flex-col rounded-xl shadow-md'>
       <div className='m-4'>
         <div className='flex flex-col md:flex-row justify-between'>
           <div
