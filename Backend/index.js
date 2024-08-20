@@ -3,6 +3,7 @@ import connectDB from './config/db.js';
 import cors from 'cors'
 import formRouter from './routes/formRouter.js'
 import dotenv from 'dotenv';
+import filterRouter from './routes/filterRouter.js';
 dotenv.config();
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 
 app.use('/postFrom',formRouter)
+app.use('/filter',filterRouter)
 
 app.listen(PORT, (error) => {
   if (!error) {
