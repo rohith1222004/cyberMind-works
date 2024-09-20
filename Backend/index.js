@@ -13,7 +13,7 @@ connectDB();
 
 app.use(express.json());
 
-//just
+//jus
 app.use('/postFrom',formRouter)
 app.use('/filter',filterRouter)
 
