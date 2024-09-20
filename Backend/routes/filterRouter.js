@@ -32,7 +32,7 @@ filterRouter.get('/', async (req, res) => {
     // console.log("fileter",filter);
     
     const jobs = await FormDetails.find(filter);
-
+    //jobs
     res.json(jobs);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
