@@ -14,7 +14,7 @@ connectDB();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello Sasi!')
 })
 app.use('/postFrom',formRouter)
 app.use('/filter',filterRouter)
